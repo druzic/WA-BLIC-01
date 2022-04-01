@@ -6,7 +6,7 @@
       :ime="got.name"
       :autor="got.authors[0]"
       :datum="got.released"
-      :id="got.isbn"
+      :id="got.url"
   /></v-container>
 </template>
 
@@ -26,7 +26,12 @@ export default {
   },
   async mounted() {
     const dohvati = await axios.get(
-      "http://ntankovic.unipu.hr:8000/books.json"
+      "https://www.anapioficeandfire.com/api/books",
+      {
+        params: {
+          _limit: 10,
+        },
+      }
     );
     this.got = dohvati.data;
     console.log(this.got);

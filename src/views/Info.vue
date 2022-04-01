@@ -1,8 +1,10 @@
 <template>
-  <v-container v-if="got"
+  <v-container
     ><v-card
       ><v-card-title> ISBN: {{ got.isbn }}</v-card-title>
-      <v-card-subtitle>Autor: {{ got.authors }}</v-card-subtitle>
+      <v-card-subtitle v-for="author in got.authors" :key="author"
+        >Autor: {{ author }}</v-card-subtitle
+      >
       <v-card-subtitle>Broj stranica: {{ got.numberOfPages }}</v-card-subtitle>
       <v-card-subtitle>Izdavač: {{ got.mediaType }}</v-card-subtitle>
       <v-card-subtitle>Zemlja podrijetla: {{ got.country }}</v-card-subtitle>
@@ -13,6 +15,7 @@
 <script>
 import axios from "axios";
 export default {
+  name: "Info",
   data() {
     return {
       got: [],
@@ -21,9 +24,9 @@ export default {
   },
 
   async mounted() {
-    const dohvati = await axios.get(
-      "http://ntankovic.unipu.hr:8000/books.json/${this.kod}"
-    );
+    console.log(this.kod);
+
+    const dohvati = await axios.get(`${this.kod}`);
     this.got = dohvati.data;
     console.log(this.got);
   },
