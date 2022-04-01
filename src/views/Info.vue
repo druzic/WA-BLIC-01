@@ -8,6 +8,9 @@
       <v-card-subtitle>Broj stranica: {{ got.numberOfPages }}</v-card-subtitle>
       <v-card-subtitle>Izdavač: {{ got.mediaType }}</v-card-subtitle>
       <v-card-subtitle>Zemlja podrijetla: {{ got.country }}</v-card-subtitle>
+      <v-card-subtitle v-if="got.characters"
+        >Broj charactera: {{ got.characters.length }}</v-card-subtitle
+      >
       <v-btn @click="back()">go bak</v-btn>
     </v-card>
   </v-container>
